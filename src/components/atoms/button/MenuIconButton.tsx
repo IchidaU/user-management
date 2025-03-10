@@ -1,17 +1,17 @@
-import { ComponentPropsWithRef, FC, memo } from "react";
+import { FC, memo, Ref } from "react";
 import { IconButton } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-type Props = ComponentPropsWithRef<HTMLButtonElement>;
+type Props = { ref?: Ref<HTMLButtonElement> };
 
-export const MenuIconButton: FC<Props> = memo(({ ...props }) => {
+export const MenuIconButton: FC<Props> = memo(({ ref }) => {
   return (
     <IconButton
-      {...props}
+      ref={ref}
       aria-label="メニューボタン"
       size="sm"
       unstyled
-      display={{ base: "block", md: "none" }}
+      display={{ base: "block", md: "block" }}
     >
       <GiHamburgerMenu />
     </IconButton>
