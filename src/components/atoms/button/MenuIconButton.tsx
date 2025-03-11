@@ -1,10 +1,8 @@
-import { ComponentPropsWithRef, FC, memo } from "react";
-import { IconButton } from "@chakra-ui/react";
+import { FC, memo } from "react";
+import { IconButton, IconButtonProps } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
-type Props = ComponentPropsWithRef<HTMLButtonElement>;
-
-export const MenuIconButton: FC<Props> = memo(({ ...props }) => {
+export const MenuIconButton: FC<IconButtonProps> = memo((props) => {
   return (
     <IconButton
       {...props}
