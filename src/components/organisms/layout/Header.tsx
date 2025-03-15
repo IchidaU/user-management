@@ -1,18 +1,11 @@
-import { FC, memo, useRef, useState } from "react";
+import { FC, memo, useState } from "react";
 import { Link } from "react-router";
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
-import {
-  DrawerRoot,
-  DrawerBackdrop,
-  DrawerContent,
-  DrawerBody,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { MenuIconButton } from "@/components/atoms/button/MenuIconButton";
+import { Box, Flex, Heading } from "@chakra-ui/react";
+
+import { MenuDrawer } from "@/components/molecules/MenuDrawer";
 
 export const Header: FC = memo(() => {
   const [open, setOpen] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -40,30 +33,7 @@ export const Header: FC = memo(() => {
           </Box>
           <Link to="">設定</Link>
         </Flex>
-        <DrawerRoot
-          placement="start"
-          size="xs"
-          open={open}
-          onOpenChange={(e) => setOpen(e.open)}
-        >
-          <DrawerBackdrop />
-          <DrawerTrigger asChild>
-            <MenuIconButton ref={buttonRef} />
-          </DrawerTrigger>
-          <DrawerContent>
-            <DrawerBody p={0} bg="gray.100">
-              <Button w="100%" unstyled>
-                TOP
-              </Button>
-              <Button w="100%" unstyled>
-                ユーザー一覧
-              </Button>
-              <Button w="100%" unstyled>
-                設定
-              </Button>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerRoot>
+        <MenuDrawer open={open} setOpen={setOpen} />
       </Flex>
     </>
   );
