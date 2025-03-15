@@ -1,4 +1,4 @@
-import { FC, memo, useRef, useState } from "react";
+import { FC, memo, useState } from "react";
 import { Link } from "react-router";
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import {
@@ -12,7 +12,6 @@ import { MenuIconButton } from "@/components/atoms/button/MenuIconButton";
 
 export const Header: FC = memo(() => {
   const [open, setOpen] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -48,7 +47,7 @@ export const Header: FC = memo(() => {
         >
           <DrawerBackdrop />
           <DrawerTrigger asChild>
-            <MenuIconButton ref={buttonRef} />
+            <MenuIconButton />
           </DrawerTrigger>
           <DrawerContent>
             <DrawerBody p={0} bg="gray.100">
