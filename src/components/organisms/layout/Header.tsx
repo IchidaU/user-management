@@ -8,7 +8,8 @@ import {
   DrawerBody,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { MenuIconButton } from "@/components/atoms/button/MenuIconButton";
+
+import { MenuIconButton } from "../../atoms/button/MenuIconButton";
 
 export const Header: FC = memo(() => {
   const [open, setOpen] = useState(false);
