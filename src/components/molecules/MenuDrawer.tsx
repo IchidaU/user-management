@@ -12,10 +12,14 @@ import {
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
+  onClickHome: () => void;
+  onClickUserManagement: () => void;
+  onClickSetting: () => void;
 };
 
 export const MenuDrawer: FC<Props> = memo((props) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, onClickHome, onClickUserManagement, onClickSetting } =
+    props;
   return (
     <DrawerRoot
       placement="start"
@@ -29,13 +33,28 @@ export const MenuDrawer: FC<Props> = memo((props) => {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerBody p={0} bg="gray.100">
-          <Button w="100%" unstyled>
+          <Button
+            w="100%"
+            unstyled
+            _hover={{ cursor: "pointer" }}
+            onClick={onClickHome}
+          >
             TOP
           </Button>
-          <Button w="100%" unstyled>
+          <Button
+            w="100%"
+            unstyled
+            _hover={{ cursor: "pointer" }}
+            onClick={onClickUserManagement}
+          >
             ユーザー一覧
           </Button>
-          <Button w="100%" unstyled>
+          <Button
+            w="100%"
+            unstyled
+            _hover={{ cursor: "pointer" }}
+            onClick={onClickSetting}
+          >
             設定
           </Button>
         </DrawerBody>
