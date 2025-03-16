@@ -1,11 +1,20 @@
-import { FC, memo, useState } from "react";
-import { Link } from "react-router";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { FC, memo, useCallback, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Box, Flex, Heading } from "@chakra-ui/react";
 
 import { MenuDrawer } from "@/components/molecules/MenuDrawer";
 
 export const Header: FC = memo(() => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const onClickHome = useCallback(() => navigate("/home"), []);
+  const onClickUserManagement = useCallback(
+    () => navigate("/home/user_management"),
+    []
+  );
+  const onClickSetting = useCallback(() => navigate("/home/setting"), []);
 
   return (
     <>
@@ -17,7 +26,13 @@ export const Header: FC = memo(() => {
         justify="space-between"
         padding={{ base: 3, md: 5 }}
       >
-        <Flex align="center" as="a" mr={8} _hover={{ cursor: "pointer" }}>
+        <Flex
+          align="center"
+          as="a"
+          mr={8}
+          _hover={{ cursor: "pointer" }}
+          onClick={onClickHome}
+        >
           <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
             ユーザー管理アプリ
           </Heading>
@@ -29,11 +44,17 @@ export const Header: FC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link to="">ユーザー一覧</Link>
+            <Link to="/home/user_management">ユーザー一覧</Link>
           </Box>
-          <Link to="">設定</Link>
+          <Link to="/home/setting">設定</Link>
         </Flex>
-        <MenuDrawer open={open} setOpen={setOpen} />
+        <MenuDrawer
+          open={open}
+          setOpen={setOpen}
+          onClickHome={onClickHome}
+          onClickUserManagement={onClickUserManagement}
+          onClickSetting={onClickSetting}
+        />
       </Flex>
     </>
   );
