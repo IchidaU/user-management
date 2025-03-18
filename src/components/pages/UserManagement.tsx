@@ -1,16 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, memo, useCallback, useEffect, useState } from "react";
-import {
-  Center,
-  Dialog,
-  Spinner,
-  Text,
-  Wrap,
-  WrapItem,
-} from "@chakra-ui/react";
+import { Center, Spinner, Wrap, WrapItem } from "@chakra-ui/react";
 
 import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "@/hooks/useAllUsers";
+import { UserDetailModal } from "../organisms/user/UserDetailModal";
 
 export const UserManagement: FC = memo(() => {
   const [open, setOpen] = useState(false);
@@ -44,18 +38,7 @@ export const UserManagement: FC = memo(() => {
           ))}
         </Wrap>
       )}
-      <Dialog.Root
-        // user={selectUser}
-        open={open}
-        onOpenChange={(e) => setOpen(e.open)}
-      >
-        <Dialog.Backdrop />
-        <Dialog.Content>
-          <Dialog.Body>
-            <Text>test</Text>
-          </Dialog.Body>
-        </Dialog.Content>
-      </Dialog.Root>
+      <UserDetailModal open={open} setOpen={setOpen} />
     </>
   );
 });
