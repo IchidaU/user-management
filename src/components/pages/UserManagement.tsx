@@ -6,12 +6,14 @@ import { UserCard } from "../organisms/user/UserCard";
 import { UserDetailModal } from "../organisms/user/UserDetailModal";
 import { useAllUsers } from "@/hooks/useAllUsers";
 import { useSelectUser } from "@/hooks/useSelectUser";
+import { useLoginUser } from "@/hooks/useLoginUser";
 
 export const UserManagement: FC = memo(() => {
   const [open, setOpen] = useState(false);
   const { getUsers, users, loading } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUser();
-  console.log(selectedUser);
+  const { loginUser } = useLoginUser();
+  console.log(loginUser);
 
   useEffect(() => getUsers(), []);
 
@@ -43,7 +45,12 @@ export const UserManagement: FC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetailModal user={selectedUser} open={open} setOpen={setOpen} />
+      <UserDetailModal
+        user={selectedUser}
+        open={open}
+        setOpen={setOpen}
+        isAdmin={loginUser?.isAdmin}
+      />
     </>
   );
 });
