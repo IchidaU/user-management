@@ -45,7 +45,12 @@ export const UserManagement: FC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetailModal user={selectedUser} open={open} setOpen={setOpen} />
+      <UserDetailModal
+        user={selectedUser}
+        open={open}
+        setOpen={setOpen}
+        isAdmin={loginUser?.isAdmin}
+      />
     </>
   );
 });
